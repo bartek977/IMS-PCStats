@@ -30,6 +30,7 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.compose.uiToolingPreview)
             implementation(libs.androidx.activity.compose)
+            implementation(libs.hivemq.mqtt.client)
         }
         commonMain.dependencies {
             implementation(libs.compose.runtime)
@@ -65,6 +66,7 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += listOf("META-INF/INDEX.LIST", "META-INF/io.netty.versions.properties") // android mqtt client
         }
     }
     buildTypes {

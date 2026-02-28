@@ -6,10 +6,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
@@ -27,9 +30,20 @@ fun LoginScreen(navController: NavHostController) {
     val url by viewModel.url.collectAsState()
     val login by viewModel.login.collectAsState()
     val password by viewModel.password.collectAsState()
+    val snackBarHostState = remember { SnackbarHostState() }
+
+    LaunchedEffect(Unit) {
+        viewModel.navigation.collect { event ->
+            when (event) {
+                LoginNavigationEvent.LoginSuccess -> snackBarHostState.showSnackbar("Logowanie powiodło się.")
+                LoginNavigationEvent.LoginFailed -> snackBarHostState.showSnackbar("Logowanie nie powiodło się.")
+            }
+        }
+    }
 
     AppScreen(
         title = "Haier Stats",
+        snackBarHostState = snackBarHostState
     ) {
         Text("Aby zacząć korzystać z aplikacji, zaloguj się używając danych z HiveMQ")
         Spacer(Modifier.height(12.dp))
