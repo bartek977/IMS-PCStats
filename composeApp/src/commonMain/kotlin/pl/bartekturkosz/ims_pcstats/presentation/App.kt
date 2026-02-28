@@ -15,6 +15,7 @@ import org.koin.compose.KoinMultiplatformApplication
 import org.koin.core.annotation.KoinExperimentalAPI
 import org.koin.dsl.koinConfiguration
 import pl.bartekturkosz.ims_pcstats.di.commonModule
+import pl.bartekturkosz.ims_pcstats.di.platformModule
 import pl.bartekturkosz.ims_pcstats.presentation.login.Login
 import pl.bartekturkosz.ims_pcstats.presentation.login.LoginScreen
 
@@ -24,7 +25,7 @@ import pl.bartekturkosz.ims_pcstats.presentation.login.LoginScreen
 fun App() {
     KoinMultiplatformApplication(
         config = koinConfiguration {
-            modules(commonModule)
+            modules(commonModule, platformModule)
         }
     ) {
         val navController = rememberNavController()
