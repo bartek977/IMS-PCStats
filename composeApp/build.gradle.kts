@@ -1,3 +1,7 @@
+@file:OptIn(ExperimentalSpmForKmpFeature::class)
+
+import io.github.frankois944.spmForKmp.swiftPackageConfig
+import io.github.frankois944.spmForKmp.utils.ExperimentalSpmForKmpFeature
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -7,6 +11,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.spmForKmp)
 }
 
 kotlin {
@@ -23,6 +28,17 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
             isStatic = true
+        }
+        iosTarget.swiftPackageConfig(cinteropName = "interop") {
+            customPackageSourcePath = "../iosApp/iosApp/mqtt"
+            dependency {
+                remotePackageVersion(
+                    url = uri("https://github.com/swift-server-community/mqtt-nio.git"),
+                    products = {
+                        add("MQTTNIO")
+                    },
+                    version = "2.13.0")
+            }
         }
     }
     
