@@ -19,7 +19,7 @@ class LoginViewModel(
         viewModelScope.launch {
             val success = mqttClientService.checkCredentials(url.value, login.value, password.value)
             if (success) {
-                navigation.emit(LoginNavigationEvent.LoginSuccess)
+                navigation.emit(LoginNavigationEvent.NavigateToDashboard)
             } else {
                 navigation.emit(LoginNavigationEvent.LoginFailed)
             }

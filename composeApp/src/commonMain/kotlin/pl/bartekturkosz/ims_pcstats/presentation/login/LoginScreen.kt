@@ -20,6 +20,7 @@ import androidx.navigation.NavHostController
 import kotlinx.serialization.Serializable
 import org.koin.compose.viewmodel.koinViewModel
 import pl.bartekturkosz.ims_pcstats.presentation.AppScreen
+import pl.bartekturkosz.ims_pcstats.presentation.dashboard.Dashboard
 
 @Serializable
 data object Login
@@ -35,7 +36,7 @@ fun LoginScreen(navController: NavHostController) {
     LaunchedEffect(Unit) {
         viewModel.navigation.collect { event ->
             when (event) {
-                LoginNavigationEvent.LoginSuccess -> snackBarHostState.showSnackbar("Logowanie powiodło się.")
+                LoginNavigationEvent.NavigateToDashboard -> navController.navigate(Dashboard)
                 LoginNavigationEvent.LoginFailed -> snackBarHostState.showSnackbar("Logowanie nie powiodło się.")
             }
         }

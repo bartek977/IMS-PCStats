@@ -16,6 +16,8 @@ import org.koin.core.annotation.KoinExperimentalAPI
 import org.koin.dsl.koinConfiguration
 import pl.bartekturkosz.ims_pcstats.di.commonModule
 import pl.bartekturkosz.ims_pcstats.di.platformModule
+import pl.bartekturkosz.ims_pcstats.presentation.dashboard.Dashboard
+import pl.bartekturkosz.ims_pcstats.presentation.dashboard.DashboardScreen
 import pl.bartekturkosz.ims_pcstats.presentation.login.Login
 import pl.bartekturkosz.ims_pcstats.presentation.login.LoginScreen
 
@@ -39,6 +41,7 @@ fun App() {
             ) {
                 NavHost(navController = navController, startDestination = Login) {
                     composable<Login> { LoginScreen(navController) }
+                    composable<Dashboard> { DashboardScreen(navController) }
                 }
             }
         }
