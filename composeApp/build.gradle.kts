@@ -61,6 +61,8 @@ kotlin {
             implementation(libs.koin)
             implementation(libs.koin.viewmodel)
             implementation(libs.koin.navigation)
+            implementation(libs.datastore)
+            implementation(libs.datastore.preferences)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
