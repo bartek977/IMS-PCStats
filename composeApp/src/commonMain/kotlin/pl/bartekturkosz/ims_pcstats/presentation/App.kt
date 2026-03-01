@@ -20,6 +20,7 @@ import pl.bartekturkosz.ims_pcstats.presentation.dashboard.Dashboard
 import pl.bartekturkosz.ims_pcstats.presentation.dashboard.DashboardScreen
 import pl.bartekturkosz.ims_pcstats.presentation.login.Login
 import pl.bartekturkosz.ims_pcstats.presentation.login.LoginScreen
+import pl.bartekturkosz.ims_pcstats.presentation.theme.IMS_PC_StatsAppTheme
 
 @OptIn(KoinExperimentalAPI::class)
 @Composable
@@ -32,7 +33,7 @@ fun App() {
     ) {
         val navController = rememberNavController()
 
-        MaterialTheme {
+        IMS_PC_StatsAppTheme {
             Column(
                 modifier = Modifier
                     .background(MaterialTheme.colorScheme.primaryContainer)
