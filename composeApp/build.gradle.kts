@@ -71,6 +71,7 @@ kotlin {
             implementation(libs.datastore.preferences)
             implementation(libs.androidx.room.runtime)
             implementation(libs.androidx.sqlite.bundled)
+            implementation(libs.datetime)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

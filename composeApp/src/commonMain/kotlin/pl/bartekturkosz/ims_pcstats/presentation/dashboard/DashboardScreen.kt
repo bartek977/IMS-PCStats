@@ -45,7 +45,7 @@ fun DashboardScreen(navController: NavHostController) {
 
     AppScreen("Dashboard") {
         LazyVerticalGrid(
-            columns = GridCells.Adaptive(200.dp),
+            columns = GridCells.Adaptive(250.dp),
             contentPadding = PaddingValues(vertical = 16.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),

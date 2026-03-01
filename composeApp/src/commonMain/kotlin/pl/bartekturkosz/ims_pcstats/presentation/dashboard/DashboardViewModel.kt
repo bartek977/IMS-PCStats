@@ -24,8 +24,11 @@ class DashboardViewModel(
 
     private fun loadData() {
         viewModelScope.launch {
-            database.sensorDataDao.getAllAsFlow().collect {
-                items.value = it.map { entity -> entity.toUI() }
+            database.sensorDataDao.getAllAsFlow().collect { sensorsValues ->
+                items.value = sensorsValues
+                    .groupBy { it.sensor }
+                    .map { it.value.maxBy { it.timestamp } }
+                    .map { it.toUI() }
             }
         }
     }
